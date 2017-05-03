@@ -6,7 +6,7 @@ import settings
 settings.SLACK_TOKEN
 SLACK_CHANNEL = "#starship_database"
 
-sc = SlackClient(SLACK_TOKEN)
+sc = SlackClient(settings.SLACK_TOKEN)
 
 def post_to_slack(listing, neighborhood):
     desc = "{} | {} | <{}> ".format(str(neighborhood), listing["name"], listing["url"])
