@@ -1,7 +1,9 @@
 from slackclient import SlackClient
-import private
+#import private
+import settings
 
-SLACK_TOKEN = private.SLACK_TOKEN
+#SLACK_TOKEN = private.SLACK_TOKEN
+settings.SLACK_TOKEN
 SLACK_CHANNEL = "#starship_database"
 
 sc = SlackClient(SLACK_TOKEN)
