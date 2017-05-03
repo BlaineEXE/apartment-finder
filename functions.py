@@ -11,7 +11,11 @@ def in_box(coords, box):
         return False
 
 def posted_recently(apartment):
-    altered_time = unicode(datetime.datetime.now() - timedelta(days=(1)))
-    current_time = unicode(datetime.datetime.now())
+    # Python 2 below
+    # altered_time = unicode(datetime.datetime.now() - timedelta(days=(1)))
+    # current_time = unicode(datetime.datetime.now())
+    # Python 3 below
+    altered_time = str(datetime.datetime.now() - timedelta(days=(1)))
+    current_time = str(datetime.datetime.now())
     result = (altered_time < apartment['datetime'])
     return result
