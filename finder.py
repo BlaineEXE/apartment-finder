@@ -3,6 +3,9 @@ from functions import in_box
 from functions import posted_recently
 import settings
 import sender
+from database import Database
+
+database = Database()
 
 print('Starting scrape...')
 houses = CraigslistHousing(site=settings.CRAIGSLIST_SITE, category='apa',
@@ -18,11 +21,12 @@ for result in results:
     if geotag is not None:
         for box in settings.BOXES.items():
             if in_box(geotag, box[1]):
-                #apartments.append(result)
-                sender.post_to_slack(result, box[0])
+                if not database.contains(result['id']):
+                    print('adding: ' + str(result['id']))
+                    database.add(result)
+                    sender.post_to_slack(result, box[0])
+                else:
+                    print('already exists: ' + str(result['id']))
                 break
 
 print('Scrape done')
-
-#for apartment in apartments:
-#    sender.post_to_slack(apartment)
