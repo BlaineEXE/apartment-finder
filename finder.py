@@ -14,13 +14,15 @@ apartments = []
 
 for result in results:
     geotag = result["geotag"]
-    if geotag is not None and posted_recently(result):
-    #if geotag is not None:
+    # if geotag is not None and posted_recently(result):
+    if geotag is not None:
         for box in settings.BOXES.items():
             if in_box(geotag, box[1]):
                 #apartments.append(result)
                 sender.post_to_slack(result, box[0])
                 break
+
+print('Scrape done')
 
 #for apartment in apartments:
 #    sender.post_to_slack(apartment)
