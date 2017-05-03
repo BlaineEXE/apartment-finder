@@ -33,4 +33,3 @@ RUN mkdir -p /opt/program
 ADD . /opt/program/apt-finder
 
 WORKDIR /opt/program/apt-finder
-CMD python finder.py
